@@ -44,13 +44,12 @@ func Get (key string) string {
 
 func SetJson (key string, value map[string]interface{}) bool {
 	if (lock[key] == false) {
-		lock[key] = true
-		
 		bytes, err := json.Marshal(value)
 		if err != nil {
 			return false
 		}
 		
+		lock[key] = true
 		data[key] = bytes
 		return true
 	}
@@ -61,7 +60,12 @@ func GetJson (key string) map[string]interface{} {
 	nilCheck(key)
 	
 	var mapData map[string]interface{}
-	json.Unmarshal(data[key], &mapData)
+	
+//	json.Unmarshal(data[key], &mapData)
+	
+	decoder := json.NewDecoder(bytes.NewReader(data[key]))
+	decoder.UseNumber()
+	err := decoder.Decode(&mapData);
 	
 	return mapData
 }
@@ -74,6 +78,7 @@ func nilCheck(key string) string {
 	}
 }
 
+/*
 func GetInt (key string) bool, int {
 	nilCheck(key)
 	
@@ -85,6 +90,7 @@ func GetInt (key string) bool, int {
 	toInt, _ = strconv.Atoi(data[key])
 	return true, toInt
 }
+*/
 
 func Delete (key string) {
 	value, isThere = data[key]
