@@ -1,3 +1,3 @@
-module pdbg.work/module/keyvalue
+module pdbg.work/unsync/module/keyvalue
 
 go 1.19

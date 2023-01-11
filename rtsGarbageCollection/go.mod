@@ -1,3 +1,3 @@
-module pdbg.work/module/rtsGarbageCollection
+module pdbg.work/unsync/module/rtsGarbageCollection
 
 go 1.19
