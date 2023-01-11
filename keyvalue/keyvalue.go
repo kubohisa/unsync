@@ -1,8 +1,6 @@
 package keyvalue
 
 import (
-	"reflect"
-	"strconv"
 	"encoding/json"
 	"sync"
 )
@@ -16,7 +14,6 @@ import (
 func New (capacity int) {
 	if data == nil {
 		data = sync.Map{}
-		lock = true
 	}
 }
 
