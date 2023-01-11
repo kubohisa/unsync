@@ -3,6 +3,7 @@ package keyvalue
 import (
 	"encoding/json"
 	"sync"
+	"time"
 )
 
 	var data sync.Map
@@ -26,6 +27,7 @@ func Set (key string, value string) {
 }
 
 func Get (key string) string {
+	Wait()
 	d, ok := data.Load(key)
 	if ok {
 		return d.(string)
@@ -47,6 +49,7 @@ func SetJson (key string, value map[string]interface{}) bool {
 func GetJson (key string) map[string]interface{} {
 	var mapData map[string]interface{}
 	
+	Wait()
 	d, ok := data.Load(key)
 	if ok {
 		decoder := json.NewDecoder(bytes.NewReader(d.(string)))
