@@ -68,3 +68,7 @@ func Empty (key string) bool {
 func Check (key string) bool {
 	return Empty (key)
 }
+
+func Wait () {
+	time.Sleep(time.Microsecond * 4000)
+}
